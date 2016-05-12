@@ -2,6 +2,13 @@ Vagrant.configure(2) do |config|
   config.vm.box = "ubuntu/trusty64"
   config.vm.network :forwarded_port, guest: 4567, host: 4567
 
+  #Added extra memory for machine
+  config.vm.provider "virtualbox" do |vb|
+    vb.gui = true
+    vb.memory = "1024"
+    vb.cpus = "4"
+  end
+
   config.vm.provision "bootstrap",
     type: "shell",
     inline: <<-SHELL
